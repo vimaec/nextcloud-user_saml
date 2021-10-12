@@ -149,7 +149,6 @@ class SAMLController extends Controller {
 			return;
 		}
 
-		$uid = $this->userData->getOriginalUid();
 		if(!$userExists && !$autoProvisioningAllowed) {
 			throw new NoUserFoundException('Auto provisioning not allowed and user ' . $uid . ' does not exist');
 		} elseif(!$userExists && $autoProvisioningAllowed) {
