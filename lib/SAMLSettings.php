@@ -126,7 +126,7 @@ class SAMLSettings {
 				'signatureAlgorithm' => $this->config->getAppValue('user_saml', $prefix . 'security-signatureAlgorithm', null)
 			],
 			'sp' => [
-				'entityId' => $this->urlGenerator->linkToRouteAbsolute('user_saml.SAML.getMetadata'),
+				'entityId' => \OC::$server->getConfig()->getSystemValue('samlentityid',$this->urlGenerator->linkToRouteAbsolute('user_saml.SAML.getMetadata')),
 				'assertionConsumerService' => [
 					'url' => $this->urlGenerator->linkToRouteAbsolute('user_saml.SAML.assertionConsumerService'),
 				],

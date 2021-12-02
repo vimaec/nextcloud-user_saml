@@ -592,7 +592,7 @@ class UserBackend implements IApacheBackend, UserInterface, IUserBackend {
 				if (is_array($attributes[$key])) {
 					$value = array_merge($value, array_values($attributes[$key]));
 				} else {
-					$value[] = $attributes[$key];
+					$value[] = array_merge($value,explode(",",$attributes[$key]));
 				}
 			}
 		}
@@ -660,6 +660,17 @@ class UserBackend implements IApacheBackend, UserInterface, IUserBackend {
 			}
 
 			if ($newGroups !== null) {
+
+				foreach ($newGroups as $g){
+					if(strpos($g, "VIM-AEC-WMT-US-ADMIN") !== false){
+						$newGroups = ["VIM-AEC-WMT-US-USER","All Users","dmsadmin"];
+						break;
+					}
+					else if(strpos($g, "VIM-AEC-WMT-US-USER") !== false){
+						$newGroups = ["VIM-AEC-WMT-US-USER","All Users"];
+						break;
+					}
+				}
 				$groupManager = $this->groupManager;
 				$oldGroups = $groupManager->getUserGroupIds($user);
 

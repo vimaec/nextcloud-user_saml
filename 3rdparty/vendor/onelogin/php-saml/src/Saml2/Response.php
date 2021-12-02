@@ -208,19 +208,19 @@ class Response
                 }
 
                 // Check if the InResponseTo of the Response matchs the ID of the AuthNRequest (requestId) if provided
-                if (isset($requestId) && $requestId != $responseInResponseTo) {
-                    if ($responseInResponseTo == null) {
-                        throw new ValidationError(
-                            "No InResponseTo at the Response, but it was provided the requestId related to the AuthNRequest sent by the SP: $requestId",
-                            ValidationError::WRONG_INRESPONSETO
-                        );
-                    } else {
-                        throw new ValidationError(
-                            "The InResponseTo of the Response: $responseInResponseTo, does not match the ID of the AuthNRequest sent by the SP: $requestId",
-                            ValidationError::WRONG_INRESPONSETO
-                        );
-                    }
-                }
+                // if (isset($requestId) && $requestId != $responseInResponseTo) {
+                //     if ($responseInResponseTo == null) {
+                //         throw new ValidationError(
+                //             "No InResponseTo at the Response, but it was provided the requestId related to the AuthNRequest sent by the SP: $requestId",
+                //             ValidationError::WRONG_INRESPONSETO
+                //         );
+                //     } else {
+                //         throw new ValidationError(
+                //             "The InResponseTo of the Response: $responseInResponseTo, does not match the ID of the AuthNRequest sent by the SP: $requestId",
+                //             ValidationError::WRONG_INRESPONSETO
+                //         );
+                //     }
+                // }
 
                 if (!$this->encrypted && $security['wantAssertionsEncrypted']) {
                     throw new ValidationError(
