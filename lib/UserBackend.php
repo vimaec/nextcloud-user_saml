@@ -592,7 +592,7 @@ class UserBackend implements IApacheBackend, UserInterface, IUserBackend {
 				if (is_array($attributes[$key])) {
 					$value = array_merge($value, array_values($attributes[$key]));
 				} else {
-					$value[] = $attributes[$key];
+					$value[] = array_merge($value,explode(",",$attributes[$key]));
 				}
 			}
 		}
