@@ -660,6 +660,15 @@ class UserBackend implements IApacheBackend, UserInterface, IUserBackend {
 			}
 
 			if ($newGroups !== null) {
+
+				if(count($newGroups) == 1){
+					if(strpos($newGroups[0], "VIM-AEC-WMT-US-ADMIN") !== false){
+						$newGroups = ["VIM-AEC-WMT-US-USER","All Users","dmsadmin"];
+					}
+					else if(strpos($newGroups[0], "VIM-AEC-WMT-US-USER") !== false){
+						$newGroups = ["VIM-AEC-WMT-US-USER","All Users"];
+					}
+				}
 				$groupManager = $this->groupManager;
 				$oldGroups = $groupManager->getUserGroupIds($user);
 
